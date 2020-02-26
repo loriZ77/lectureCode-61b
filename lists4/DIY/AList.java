@@ -21,24 +21,40 @@ public class AList {
         size=0;
     }
 
+    /**
+     * resize the underlying array with target capacity
+     */
+    private void resize(int capacity){
+        int[] a=new int[capacity];
+        System.arraycopy(items,0,a,0,size);
+        items=a;
+    }
     /** Inserts X into the back of the list. */
     public void addLast(int x) {
+        if(size==items.length){
+        resize(size+1);
+        }
         items[size]=x;
         size=size+1;
 
     }
 
+
+
     /** Returns the item from the back of the list. */
     public int getLast() {
+
         return items[size-1];
     }
     /** Gets the ith item in the list (0 is the front). */
     public int get(int i) {
+
         return items[i];
     }
 
     /** Returns the number of items in the list. */
     public int size() {
+
         return size;
     }
 
@@ -46,7 +62,7 @@ public class AList {
       * returns deleted item. */
     public int removeLast() {
         int deletedItem=getLast();
-        items[size-1]=0;
+        //items[size-1]=0;   unnecessary
         size=size-1;
         return deletedItem;
     }
